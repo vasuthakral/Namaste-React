@@ -1,0 +1,52 @@
+/* Header of Websie */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+.headerLogo {
+  width: 150px;
+  height: 100px;
+}
+.navItems > ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0px 20px;
+  font-size: 20px;
+}
+.navItems > ul > li {
+  margin: 9px;
+  padding: 5px;
+}
+
+/* Body of website */
+
+.bodyContainer {
+  margin-top: 10px;
+}
+
+.filter-btn {
+  cursor: pointer;
+}
+
+.resCard:hover {
+  border: 1px solid black;
+  cursor: pointer;
+}
+.resCard {
+  margin-top: 10px;
+  width: 200px;
+  height: 300px;
+  padding-left: 40px;
+  background-color: rgb(246, 246, 242);
+}
+
+.bodyLogo {
+  width: 150px;
+  height: 100px;
+}
+.resContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
