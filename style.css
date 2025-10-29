@@ -50,3 +50,18 @@
   flex-wrap: wrap;
   gap: 2px;
 }
+
+/* Shimmer Ui */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.shimmer {
+  height: 300px;
+  width: 200px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
