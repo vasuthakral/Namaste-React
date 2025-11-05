@@ -2,6 +2,7 @@ import RestrauntCard from "./RestrauntCard";
 import MockData from "../utils/MockData"; //Now using shimmer ui
 import Shimmer from "./Shimmer";
 
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Body = () => {
@@ -10,7 +11,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filterList, setFilterList] = useState([]);
 
-  console.log(filterList); //The entire component is getting re-render and console.log() is in component
+  /* console.log(filterList); */ //The entire component is getting re-render and console.log() is in component
 
   useEffect(() => {
     fxn();
@@ -18,24 +19,21 @@ const Body = () => {
 
   const fxn = async () => {
     const fetch_data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.769223219109158&lng=76.57429534004214&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
     );
 
     const fetched = await fetch_data.json();
 
     //Set both master and slave list
-    set_list_of_restraunt(
+    const items =
       fetched?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+        ?.restaurants;
 
-    setFilterList(
-      fetched?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+    set_list_of_restraunt(items);
+    setFilterList(items);
   };
 
-  if (list_of_restraunt.length === 0) {
+  if (filterList.length === 0) {
     return <Shimmer />;
   }
 
@@ -67,6 +65,7 @@ const Body = () => {
           Search
         </button>
       </div>
+
       <button
         className="filter-btn"
         onClick={() => {
@@ -81,7 +80,11 @@ const Body = () => {
 
       <div className="resContainer">
         {filterList.map((ele) => {
-          return <RestrauntCard key={ele?.info?.id} resData={ele} />;
+          return (
+            <Link key={ele?.info?.id} to={"/restraunt/" + ele?.info?.id}>
+              <RestrauntCard resData={ele} />
+            </Link>
+          );
         })}
       </div>
     </div>
