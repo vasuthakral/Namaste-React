@@ -8,7 +8,8 @@ import { useParams } from "react-router";
 const RestrauntMenu = () => {
   const [resInfo, set_resInfo] = useState(null);
 
-  const { resId } = useParams(); /* Now this is getting from routing in react */
+  const { resId } =
+    useParams(); /* {Object Destructring } Now this is getting from routing in react */
 
   useEffect(() => {
     fxn();
