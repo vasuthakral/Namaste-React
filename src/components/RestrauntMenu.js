@@ -1,32 +1,19 @@
-import { useEffect, useState } from "react";
-
-import { SWIGGY_RESTRAUNT_MENU_URL } from "../utils/constants";
+import useRestrauntMenu from "../utils/useRestrauntMenu"; /* Custom hook */
 import Shimmer from "./Shimmer";
 
 import { useParams } from "react-router";
 
 const RestrauntMenu = () => {
-  const [resInfo, set_resInfo] = useState(null);
-
   const { resId } =
     useParams(); /* {Object Destructring } Now this is getting from routing in react */
 
-  useEffect(() => {
-    fxn();
-  }, []);
+  const resInfo =
+    useRestrauntMenu(
+      resId
+    ); /* Custom hook ->for fetching the data ->Single Modularity prncipal (resInfo is state variable as of return ) */
 
-  const fxn = async () => {
-    const fetched = await fetch(SWIGGY_RESTRAUNT_MENU_URL + resId);
-    const fetch_data = await fetched.json();
 
-    /* Printing the Data for checkup
-    console.log(fetch_data); */
-
-    set_resInfo(fetch_data);
-  };
-
-  /* ---------------------------------------------------------- */
-
+  /* Conditional Rendering */
   if (resInfo === null) {
     return <Shimmer />;
   }

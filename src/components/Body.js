@@ -5,6 +5,8 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import useOnlineStatus from "../utils/useOnlineStatus";
+
 const Body = () => {
   const [list_of_restraunt, set_list_of_restraunt] = useState([]); //Emty array to prevent error->Can't acces property of Undefined->Master List
 
@@ -32,6 +34,16 @@ const Body = () => {
     set_list_of_restraunt(items);
     setFilterList(items);
   };
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return (
+      <>
+        <h1>You are Ofline</h1>
+        <h2>Please Connect to Internet</h2>
+      </>
+    ); 
+  }
 
   if (filterList.length === 0) {
     return <Shimmer />;
